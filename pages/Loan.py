@@ -45,7 +45,7 @@ veri_status_mapping10={"none":2, "bank":1, "stores":0}
 
 # -------------------------------------------------------------------------------
 
-st.title('Welcome to Eligiloan 🏦')
+st.title('Welcome to Runaha 🏦')
 # orange text
 
 st.subheader('We are here to help you get the best loan counseling')

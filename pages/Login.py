@@ -1,14 +1,14 @@
 import streamlit as st
-from PIL import Image 
+# from PIL import Image 
 
-image2=Image.open('assets/logo2.png')
-st.set_page_config(
-    page_title="Login",
-    page_icon=image2,
-)
+# image2=Image.open('assets/logo2.png')
+# st.set_page_config(
+#     page_title="Login",
+#     page_icon=image2,
+# )
 
 
-from API.utils.post_initreq import init_req, fetch_data, fetch_analysed_data
+# from API.utils.post_initreq import init_req, fetch_data, fetch_analysed_data
 
 st.title("Login")
 

@@ -1,15 +1,15 @@
 import streamlit as st
-from PIL import Image 
+# from PIL import Image 
 
-image2=Image.open('assets/logo2.png')
-st.set_page_config(
-    page_title="EligiLoan",
-    page_icon=image2,
-)
+# image2=Image.open('assets/logo2.png')
+# st.set_page_config(
+#     page_title="Runaha",
+#     page_icon=image2,
+# )
 
-image = Image.open('assets/poster.jpg')
-st.image(image, caption='ELIGILOAN')
-st.write("# Welcome to Eligiloan! 👋")
+# image = Image.open('assets/poster.jpg')
+# st.image(image, caption='Runaha')
+st.write("# Welcome to Runaha! 👋")
 
 
 st.markdown(
