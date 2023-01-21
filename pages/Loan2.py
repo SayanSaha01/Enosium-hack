@@ -1,4 +1,15 @@
 import streamlit as st
+import joblib
+
+# from API.services.loadModel import LoanDefaultPrediction
+
+# import torch
+# import time
+# import numpy as np
+
+# LABEL_DICT={0:'Not Eligible',1:'Eligible'}
+# veri_status_mapping={'Not Verified':0,'Verified':1,'Source Verified':2}
+# Initial_List_Status_mapping={'w':0,'f':1}
 
 # -------------------------------------------------------------------------------
 
@@ -221,4 +232,17 @@ map10_other_loans_plans_taken = veri_status_mapping10[map10_other_loans_plans_ta
 if st.button('Check my chances'):
     st.write('Thank you')
     
+    scaler = joblib.load('minmaxscaler.joblib')
+    model = joblib.load('rforrest.pkl')
+    x = scaler.transform([[number_of_people_who_will_provide_maintainance,map9_loan_history,loan_amount_taken,map1_guarantor_or_debtor,2.33,number_of_loans_taken_from_current_bank,age,
+    map7_amount_in_current_account,map8_amount_in_savings_account,percent_income_paid_as_installment,veri_status_mapping10,map3_working_abroad,time_duration_of_loan,
+    veri_status_mapping4,map6_type_of_job,map2_type_of_housing,map11_years_of_staying_in_current_residence]])
+    print(number_of_loans_taken_from_current_bank.dtype)
+    """x=scaler.transform([[1.0000e+00, 0.0000e+00, 1.0477e+04, 0.0000e+00, 3.0000e+00,
+       2.0000e+00, 4.2000e+01, 1.0000e+00, 2.0000e+00, 2.0000e+00,
+       2.0000e+00, 1.0000e+00, 3.6000e+01, 0.0000e+00, 2.0000e+00,
+       0.0000e+00, 4.0000e+00]])"""
+    #print(x)
+    result = model.predict(x)
+    print(result)
     ##st.success('U {}'.format(result))
