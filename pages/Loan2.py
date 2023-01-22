@@ -1,18 +1,6 @@
 import streamlit as st
 import joblib
 
-# from API.services.loadModel import LoanDefaultPrediction
-
-# import torch
-# import time
-# import numpy as np
-
-# LABEL_DICT={0:'Not Eligible',1:'Eligible'}
-# veri_status_mapping={'Not Verified':0,'Verified':1,'Source Verified':2}
-# Initial_List_Status_mapping={'w':0,'f':1}
-
-# -------------------------------------------------------------------------------
-
 #1 Guarantor or Debtor
 veri_status_mapping1={"none":0,"co-applicant":1,"gaurantor":2}
 
@@ -29,10 +17,10 @@ veri_status_mapping4={"No property":0,"car or other property":1,"building societ
 veri_status_mapping5={"unskilled - resident":0,"unemployed/ unskilled - non-resident":1,"skilled employee / official":2,"management/ self-employed/highly qualified employee/ officer":3}
 
 #6 Number of years of employment
-veri_status_mapping6={"unemployed":0,"less than a year":1,"between 0 and 200":2,"greater than 4 years":3}
+veri_status_mapping6={"unemployed":0,"less than a year":1,"between 1 and 4 years":2,"greater than 4 years":3}
 
 #7 amount in current account
-veri_status_mapping7={"less than 0":0,"no current account":1,"between 1 and 4 years":2,"greater than 200":3}
+veri_status_mapping7={"less than 0":0,"no current account":1,"between 0 and 200":2,"greater than 200":3}
 
 #8 amount in savings account
 veri_status_mapping8={"No savings account":0,"less than 100":1,"between 100 and 500":2,"between 500 and 1000":3,"greater than 1000":4}
@@ -97,7 +85,7 @@ with col1a:
 with col2a:
     map7_amount_in_current_account = st.selectbox(
         'Please select the amount range in your current account',
-        options=('less than 0', 'no current account', 'between 1 and 4 years', 'greater than 200'),
+        options=('less than 0', 'no current account', 'between 0 and 200', 'greater than 200'),
         help='Please select the amount range in your savings account'
     )
 
@@ -169,7 +157,7 @@ with col2d:
     # years of employment
     map2_years_of_employment = st.selectbox(
         'Please select the number of years of employment',
-        options=('less than 1 year', 'between 1 and 4 years', 'between 4 and 7 years', 'greater than 7 years'),
+        options=('unemployed', 'less than a year', 'between 1 and 4 years', 'greater than 4 years'),
         help='Please select the number of years of employment'
     )
 
@@ -191,12 +179,13 @@ with col2e:
     )
 
 # years of staying in current residence
-map11_years_of_staying_in_current_residence = st.selectbox(
-    'Please select the number of years of staying in current residence',
-    options=('less than 1 year', 'between 1 and 4 years', 'between 4 and 7 years', 'greater than 7 years'),
-    help='Please select the number of years of staying in current residence'
-)
 
+
+map11_years_of_staying_in_current_residence  = st.number_input(
+        'Please select the number of years of staying in current residence',
+        0
+    )
+    
 # working abroad or not
 map3_working_abroad = st.checkbox(
     'I am working abroad',
@@ -223,27 +212,42 @@ map9_loan_history = veri_status_mapping9[map9_loan_history]
 
 map10_other_loans_plans_taken = veri_status_mapping10[map10_other_loans_plans_taken]
 
-
-
+years_of_employment = veri_status_mapping6[map2_years_of_employment]
 
 
 
 # Now add a submit button to the form:
 if st.button('Check my chances'):
     st.write('Thank you')
-    
+    print(number_of_people_who_will_provide_maintainance)
+    print(map9_loan_history)
+    print(loan_amount_taken)
+    print(map1_guarantor_or_debtor)
+    print(years_of_employment)
+    print(number_of_loans_taken_from_current_bank)
+    print(age)
+    print(map7_amount_in_current_account)
+    print(map8_amount_in_savings_account)
+    print(percent_income_paid_as_installment)
+    print(map10_other_loans_plans_taken)
+    print(map3_working_abroad)
+    print(time_duration_of_loan)
+    print(map4_Owned_property)
+    print(map6_type_of_job)
+    print(map2_type_of_housing)
+    print(map11_years_of_staying_in_current_residence)
     scaler = joblib.load('minmaxscaler.joblib')
     model = joblib.load('rforrest.pkl')
-    """x = scaler.transform([[number_of_people_who_will_provide_maintainance,map9_loan_history,loan_amount_taken,map1_guarantor_or_debtor,2.33,number_of_loans_taken_from_current_bank,age,
+    x = scaler.transform([[number_of_people_who_will_provide_maintainance,map9_loan_history,loan_amount_taken,map1_guarantor_or_debtor,years_of_employment,number_of_loans_taken_from_current_bank,age,
     map7_amount_in_current_account,map8_amount_in_savings_account,percent_income_paid_as_installment,veri_status_mapping10,map3_working_abroad,time_duration_of_loan,
     veri_status_mapping4,map6_type_of_job,map2_type_of_housing,map11_years_of_staying_in_current_residence]])
-    print(number_of_loans_taken_from_current_bank.dtype)"""
-    x=scaler.transform([[1.0000e+00, 0.0000e+00, 1.0477e+04, 0.0000e+00, 3.0000e+00,
+
+    """x=scaler.transform([[1.0000e+00, 0.0000e+00, 1.0477e+04, 0.0000e+00, 3.0000e+00,
        2.0000e+00, 4.2000e+01, 1.0000e+00, 2.0000e+00, 2.0000e+00,
        2.0000e+00, 1.0000e+00, 3.6000e+01, 0.0000e+00, 2.0000e+00,
-       0.0000e+00, 4.0000e+00]])
-    #print(x)
+       0.0000e+00, 4.0000e+00]])"""
+    print(x)
     #print(veri_status_mapping10['bank'])
-    result = model.predict(x)
-    print(result)
-    st.success('U {}'.format(result))
+    """result = model.predict(x)
+    print(model.predict(x))
+    st.success('U {}'.format(result))"""
