@@ -239,8 +239,8 @@ if st.button('Check my chances'):
     scaler = joblib.load('minmaxscaler.joblib')
     model = joblib.load('rforrest.pkl')
     x = scaler.transform([[number_of_people_who_will_provide_maintainance,map9_loan_history,loan_amount_taken,map1_guarantor_or_debtor,years_of_employment,number_of_loans_taken_from_current_bank,age,
-    map7_amount_in_current_account,map8_amount_in_savings_account,percent_income_paid_as_installment,veri_status_mapping10,map3_working_abroad,time_duration_of_loan,
-    veri_status_mapping4,map6_type_of_job,map2_type_of_housing,map11_years_of_staying_in_current_residence]])
+    map7_amount_in_current_account,map8_amount_in_savings_account,percent_income_paid_as_installment,map10_other_loans_plans_taken,map3_working_abroad,time_duration_of_loan,
+    map4_Owned_property,map6_type_of_job,map2_type_of_housing,map11_years_of_staying_in_current_residence]])
 
     """x=scaler.transform([[1.0000e+00, 0.0000e+00, 1.0477e+04, 0.0000e+00, 3.0000e+00,
        2.0000e+00, 4.2000e+01, 1.0000e+00, 2.0000e+00, 2.0000e+00,
@@ -248,6 +248,6 @@ if st.button('Check my chances'):
        0.0000e+00, 4.0000e+00]])"""
     print(x)
     #print(veri_status_mapping10['bank'])
-    """result = model.predict(x)
+    result = model.predict(x)
     print(model.predict(x))
-    st.success('U {}'.format(result))"""
+    st.success('U {}'.format(result))
