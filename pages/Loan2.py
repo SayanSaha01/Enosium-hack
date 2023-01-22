@@ -218,26 +218,10 @@ years_of_employment = veri_status_mapping6[map2_years_of_employment]
 
 # Now add a submit button to the form:
 if st.button('Check my chances'):
-    st.write('Thank you')
-    print(number_of_people_who_will_provide_maintainance)
-    print(map9_loan_history)
-    print(loan_amount_taken)
-    print(map1_guarantor_or_debtor)
-    print(years_of_employment)
-    print(number_of_loans_taken_from_current_bank)
-    print(age)
-    print(map7_amount_in_current_account)
-    print(map8_amount_in_savings_account)
-    print(percent_income_paid_as_installment)
-    print(map10_other_loans_plans_taken)
-    print(map3_working_abroad)
-    print(time_duration_of_loan)
-    print(map4_Owned_property)
-    print(map6_type_of_job)
-    print(map2_type_of_housing)
-    print(map11_years_of_staying_in_current_residence)
+
     scaler = joblib.load('minmaxscaler.joblib')
     model = joblib.load('rforrest.pkl')
+
     x = scaler.transform([[number_of_people_who_will_provide_maintainance,map9_loan_history,loan_amount_taken,map1_guarantor_or_debtor,years_of_employment,number_of_loans_taken_from_current_bank,age,
     map7_amount_in_current_account,map8_amount_in_savings_account,percent_income_paid_as_installment,map10_other_loans_plans_taken,map3_working_abroad,time_duration_of_loan,
     map4_Owned_property,map6_type_of_job,map2_type_of_housing,map11_years_of_staying_in_current_residence]])
@@ -246,13 +230,10 @@ if st.button('Check my chances'):
     #print(x)
     #print(veri_status_mapping10['bank'])
     result = model.predict(x)
-<<<<<<< HEAD
     #print(result[0])
     if(result[0]==1.0):
        st.success('Congrats!! You are eligible for loan')
     else:
        st.error(' Sorry, but you are not eligible')
-=======
-    print(model.predict(x))
-    st.success('U {}'.format(result))
->>>>>>> 3008d2c9191167b540fae4fae4fab47890119f00
+
+st.write('Thank you for using Runaha')
