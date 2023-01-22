@@ -1,5 +1,15 @@
 import streamlit as st
 import joblib
+from PIL import Image 
+
+image2=Image.open('assets/icon.png')
+st.set_page_config(
+    page_title="Loan Check",
+    page_icon=image2,
+)
+
+
+
 
 #1 Guarantor or Debtor
 veri_status_mapping1={"none":0,"co-applicant":1,"gaurantor":2}
@@ -37,6 +47,8 @@ veri_status_mapping10={"none":2, "bank":1, "stores":0}
 
 st.title('Welcome to Runaha 🏦')
 # orange text
+image = Image.open('assets/banner2.png')
+st.image(image)
 
 st.subheader('We are here to help you get the best loan counseling')
 # -------------------------------------------------------------------------------
@@ -90,7 +102,7 @@ with col2a:
     )
 
 # ------------------------------
-st.subheader('Now let us look at your past performance to give you :orange[more personalised results]')
+st.subheader('Now let us look at your past performance to give you :blue[more personalised results]')
 # ------------------------------
 
 col1b, col2b = st.columns(2)
@@ -139,7 +151,7 @@ with col2c:
     )
 
 # ------------------------------
-st.subheader('We :orange[totally believe you]! We just need a few more things to give you the most accurate results.')
+st.subheader('We :blue[totally believe you]! We just need a few more things to give you the most accurate results.')
 # ------------------------------
 
 col1d , col2d = st.columns(2)
@@ -233,7 +245,8 @@ if st.button('Check my chances'):
     #print(result[0])
     if(result[0]==1.0):
        st.success('Congrats!! You are eligible for loan')
+       st.write('Thank you for using Runaha')
     else:
        st.error(' Sorry, but you are not eligible')
+       st.write('Thank you for using Runaha')
 
-st.write('Thank you for using Runaha')

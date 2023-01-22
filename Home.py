@@ -1,6 +1,15 @@
 import streamlit as st
-st.write("# Welcome to Runaha! 👋")
+from PIL import Image 
 
+image2=Image.open('assets/icon.png')
+st.set_page_config(
+    page_title="Runaha",
+    page_icon=image2,
+)
+
+image = Image.open('assets/banner.png')
+st.write("# Welcome to Runaha! 👋")
+st.image(image, caption='Runaha')
 
 st.markdown(
     """
