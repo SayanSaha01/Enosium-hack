@@ -244,9 +244,13 @@ if st.button('Check my chances'):
     result = model.predict(x)
     #print(result[0])
     if(result[0]==1.0):
+       iimage = Image.open('assets/success.png')
+       st.image(iimage) 
        st.success('Congrats!! You are eligible for loan')
        st.write('Thank you for using Runaha')
     else:
        st.error(' Sorry, but you are not eligible')
+       iimage = Image.open('assets/fail.png')
+       st.image(iimage) 
        st.write('Thank you for using Runaha')
 
