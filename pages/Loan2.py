@@ -246,8 +246,13 @@ if st.button('Check my chances'):
     #print(x)
     #print(veri_status_mapping10['bank'])
     result = model.predict(x)
+<<<<<<< HEAD
     #print(result[0])
     if(result[0]==1.0):
        st.success('Congrats!! You are eligible for loan')
     else:
        st.error(' Sorry, but you are not eligible')
+=======
+    print(model.predict(x))
+    st.success('U {}'.format(result))
+>>>>>>> 3008d2c9191167b540fae4fae4fab47890119f00
