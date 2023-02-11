@@ -2,4 +2,4 @@ python-dotenv
 requests
 Streamlit
 joblib
-sklearn
+scikit-learn
